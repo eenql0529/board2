@@ -19,17 +19,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getLists" parameterType="map"  resultType="Board">
-	select * from (
-    select rownum rnum, data.* from (
-        select num, name, subject, hitCount, to_char(created, 'YYYY-MM-DD')created
-        from board
-        where #{searchKey} like '% || #{searchValue} || %'
-        order by num desc
-    ) data
-)
-<![CDATA[
-where rnum >= #{start} and rnum <= #{end}
-]]>
+		select * from (
+		    select rownum rnum, data.* from (
+		        select num, name, subject, hitCount, to_char(created, 'YYYY-MM-DD')created
+		        from board
+		        where #{searchKey} like '% || #{searchValue} || %'
+		        order by num desc
+		    ) data
+		)
+		<![CDATA[
+		where rnum >= #{start} and rnum <= #{end}
+		]]>
 	</select>
 
 </mapper>
